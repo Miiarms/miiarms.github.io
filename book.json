@@ -65,7 +65,7 @@
       "modify_format": "YYYY-MM-DD HH:mm:ss"
     },
 	"page-footer-ex": {
-            "copyright": "[miiarms](https://miiarms.github.io/)",
+            "copyright": "[miiarms](https://github.com/miiarms/miiarms.github.io )",
             "markdown": true,
             "update_label": "<i>updated</i>",
             "update_format": "YYYY-MM-DD HH:mm:ss"
