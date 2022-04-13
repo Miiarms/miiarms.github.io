@@ -23,7 +23,8 @@
     "baidu-tongji",
     "anchor-navigation-ex",
 	"hide-element",
-	"page-footer-ex"
+	"page-footer-ex",
+	"mermaid-gb3"
   ],
   "pluginsConfig": {
     "github-buttons": {
