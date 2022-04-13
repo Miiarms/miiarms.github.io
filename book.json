@@ -30,13 +30,14 @@
       "buttons": [
         {
           "user": "miiarms",
-          "repo": "document-library", 
+          "repo": "https://github.com/miiarms/miiarms.github.io", 
           "type": "star",
           "count": true,
           "size": "small"
         }, 
         {
           "user": "miiarms",
+		  "repo": "https://github.com/miiarms/miiarms.github.io", 
           "width": "160", 
           "type": "follow", 
           "count": true,
