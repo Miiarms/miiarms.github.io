@@ -52,7 +52,7 @@ t2(thread) --> s2(socket2)
 t3(thread) --> s3(socket3)
 end
 ```
-#### ⚠️ 多线程版缺点
+####  ⚠️多线程版缺点
 
 * 内存占用高
 * 线程上下文切换成本高
@@ -222,6 +222,16 @@ compact 方法，是把未读完的部分向前压缩，然后切换至写模式
 #### 💡 调试工具类
 
 ```java
+package com.miiarms.netty.util;
+
+import io.netty.util.internal.StringUtil;
+import java.io.File;
+import java.nio.ByteBuffer;
+/**
+ * @author miiarms
+ * @version 1.0
+ * @date 2022/4/15 15:33
+ */
 public class ByteBufferUtil {
     private static final char[] BYTE2CHAR = new char[256];
     private static final char[] HEXDUMP_TABLE = new char[256 * 4];
@@ -229,6 +239,8 @@ public class ByteBufferUtil {
     private static final String[] HEXDUMP_ROWPREFIXES = new String[65536 >>> 4];
     private static final String[] BYTE2HEX = new String[256];
     private static final String[] BYTEPADDING = new String[16];
+
+    private static final String NEWLINE = System.getProperty("line.separator", "\n");
 
     static {
         final char[] DIGITS = "0123456789abcdef".toCharArray();
@@ -375,6 +387,10 @@ public class ByteBufferUtil {
                 "+--------+-------------------------------------------------+----------------+");
     }
 
+    private static boolean isOutOfBounds(int index, int length, int capacity) {
+        return (index | length | capacity | index + length | capacity - (index + length)) < 0;
+    }
+
     private static void appendHexDumpRowPrefix(StringBuilder dump, int row, int rowStartIndex) {
         if (row < HEXDUMP_ROWPREFIXES.length) {
             dump.append(HEXDUMP_ROWPREFIXES[row]);
@@ -390,6 +406,7 @@ public class ByteBufferUtil {
         return (short) (buffer.get(index) & 0xFF);
     }
 }
+
 ```
 
 
