@@ -50,8 +50,8 @@
       "button": "打赏",
       "alipayText": "支付宝打赏",
       "wechatText": "微信打赏",
-      "alipay": "http://image.miiarms.com/alipay.jpg",
-      "wechat": "http://image.miiarms.com/wechatpay.png"
+      "alipay": "images/alipay.jpg",
+      "wechat": "images/wechatpay.png"
     },
     "prism": {
       "css": [
