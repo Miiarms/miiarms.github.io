@@ -24,7 +24,8 @@
     "anchor-navigation-ex",
 	"hide-element",
 	"page-footer-ex",
-	"mermaid-gb3"
+	"mermaid-gb3",
+	"favicon-absolute"
   ],
   "pluginsConfig": {
     "github-buttons": {
@@ -80,6 +81,10 @@
     },
 	"hide-element": {
        "elements": [".gitbook-link"]
-    }
+    },
+	"favicon-absolute":{
+		"favicon": "/icon/favicon.ico",
+		"appleTouchIconPrecomposed152": "/icon/big_facion.png"
+	}
   }
 }
