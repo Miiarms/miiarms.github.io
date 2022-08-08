@@ -19,49 +19,27 @@
 ## 写接口，配合spring使用
 
 ```java
-package com.ruqimobility.taxi.copier;
 
-import com.ruqimobility.taxi.dao.model.TaxiOfflineOrderInfo;
-import com.ruqimobility.taxi.request.TaxiOfflineOrderEndRequest;
-import com.ruqimobility.taxi.request.TaxiOfflineOrderStartRequest;
-import com.ruqimobility.taxi.request.TaxiOfflineSyncOrderRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 import java.util.Date;
 import java.util.Optional;
 
-/**
- * 扬招单数据库实体类和请求的转换
- * @author miiarms
- * @date 2022/4/26 9:55
- **/
 @Mapper(componentModel = "spring")
-public interface TaxiOrderCopier {
+public interface OrderCopier {
 
-    /**
-     * 扬招单开始服务同步请求入参转po
-     * @author miiarms
-     * @date 2022/4/26 9:58
-     **/
+    
     @Mapping(source = "timestamp",target = "syncRequestTime")
-    TaxiOfflineOrderInfo syncStart2Model(TaxiOfflineOrderStartRequest request);
+    OrderInfo syncStart2Model(OrderStartRequest request);
 
-   /**
-    * 扬招单结束服务同步请求入参转po
-    * @author miiarms
-    * @date 2022/4/26 10:00
-    **/
+   
     @Mapping(source = "timestamp",target = "syncRequestTime")
-    TaxiOfflineOrderInfo syncEnd2Model(TaxiOfflineOrderEndRequest request);
+    OrderInfo syncEnd2Model(OrderEndRequest request);
 
-    /**
-     * 扬招单全量信息同步请求 转 数据库实体
-     * @author miiarms
-     * @date 2022/4/26 10:00
-     **/
+   
     @Mapping(source = "timestamp",target = "syncRequestTime")
-    TaxiOfflineOrderInfo syncFull2Model(TaxiOfflineSyncOrderRequest request);
+    OrderInfo syncFull2Model(SyncOrderRequest request);
 
 
     /**
