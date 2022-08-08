@@ -29,18 +29,8 @@ import java.util.Optional;
 @Mapper(componentModel = "spring")
 public interface OrderCopier {
 
-    
     @Mapping(source = "timestamp",target = "syncRequestTime")
-    OrderInfo syncStart2Model(OrderStartRequest request);
-
-   
-    @Mapping(source = "timestamp",target = "syncRequestTime")
-    OrderInfo syncEnd2Model(OrderEndRequest request);
-
-   
-    @Mapping(source = "timestamp",target = "syncRequestTime")
-    OrderInfo syncFull2Model(SyncOrderRequest request);
-
+    OrderInfo sync2Model(OrderStartRequest request);
 
     /**
      * Long 转 date
