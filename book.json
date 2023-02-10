@@ -2,6 +2,7 @@
   "title": "miiarms 的文档库",
   "author": "miiarms ",
   "language": "zh-hans",
+  "description":"java技术相关，netty、 elasticsearch、jvm、mySQL等",
   "styles": {
     "website": "./public-repertory/css/gitbook-configure.css"
   },
@@ -19,7 +20,6 @@
     "-sharing",
     "github-buttons",
     "donate",
-    "-tbfed-pagefooter",
     "baidu-tongji",
     "anchor-navigation-ex",
 	"hide-element",
@@ -62,13 +62,9 @@
         "shell": "bash"
       }
     },
-    "tbfed-pagefooter": {
-      "copyright":"Copyright &copy miiarms.com 2022",
-      "modify_label": "该文件修订时间：",
-      "modify_format": "YYYY-MM-DD HH:mm:ss"
-    },
+   
 	"page-footer-ex": {
-            "copyright": "[miiarms](https://github.com/miiarms/miiarms.github.io )",
+            "copyright": "Copyright © miiarms.com 2023 all right reserved",
             "markdown": true,
             "update_label": "<i>updated</i>",
             "update_format": "YYYY-MM-DD HH:mm:ss"
@@ -83,8 +79,8 @@
        "elements": [".gitbook-link"]
     },
 	"favicon-absolute":{
-		"favicon": "/icon/favicon.ico",
-		"appleTouchIconPrecomposed152": "/icon/big_facion.png"
+		"favicon": "/images/icon/favicon.ico",
+		"appleTouchIconPrecomposed152": "/images/icon/big_facion.png"
 	}
   }
 }

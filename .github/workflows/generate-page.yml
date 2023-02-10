@@ -7,7 +7,7 @@ on:                                 #在main分支上进行push时触发
     - main
 
 jobs:
-  main-to-gh-pages:
+  main-to-pages:
     runs-on: ubuntu-latest
         
     steps:                          
@@ -29,7 +29,7 @@ jobs:
       run: |
         gitbook build
                 
-    - name: push _book to branch gh-pages 
+    - name: push _book to branch pages 
       env:
         TOKEN: ${{ secrets.TOKEN }} # 在个人设置里生成一个新的个人令牌，权限仅选择repo即可。进入仓库，点击Settiings -> Secrets -> New repository，将其命名为TOKEN
         REF: github.com/${{github.repository}}
