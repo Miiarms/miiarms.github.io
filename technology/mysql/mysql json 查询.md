@@ -135,6 +135,19 @@ MySQL 提供了 `->` 和 `->>` 表达式，其中:
 - `->`  等价于  `JSON_EXTRACT`，能得到提取结果但是不去除外面的双引号
 - `->>` 等价于 `JSON_UNQUOTE(JSON_EXTRACT)`，能得到提取结果且会去除外面的符号
 
+**案例演示：**
+
+   ```sql
+   -- 因为查询operator字段是字符串，结果会有 JSON 的双引号
+   select snapshot_json ->'$.operator' from config_snapshot;
+   -- json_unquote会去掉查询结果的双引号
+   select snapshot_json ->>'$.operator' from config_snapshot;
+   ```
+
+<img src="https://cdn.jsdelivr.net/gh/miiarms/typroa-image/moving/202302171831260.png" alt="image-20230217183133186" style="zoom:33%;" />
+
+<img src="https://cdn.jsdelivr.net/gh/miiarms/typroa-image/moving/202302171832791.png" alt="image-20230217183201722" style="zoom:33%;" />
+
 ---
 
 ### json_contains
