@@ -73,7 +73,7 @@ INSERT INTO gac_member.config_snapshot (id, snapshot_json, city_ids, operator, c
 
 ---
 
-## json 相关的方法
+## json 常用函数
 
 ### json_extract
 
@@ -157,7 +157,98 @@ MySQL 提供了 `->` 和 `->>` 表达式，其中:
 - 对JSON数组检查一个元素或者多个元素是否存在；
 - 对于JSON对象检查指定KEY是否有某个值
 
+**案例演示：**
+
+查询同时包含 440100、 440300 两个城市的数据
+
+```sql
+-- 查询同时包含 440100、 440300 两个城市的数据
+select * from config_snapshot where json_contains(snapshot_json ->>'$.city_ids', '["440100", "440300"]');
+```
+
+![image-20230220160114024](https://cdn.jsdelivr.net/gh/miiarms/typroa-image/moving/202302201601245.png)
+
+```sql
+-- 查询json字段city_ids包含440100的数据
+select * from config_snapshot where json_contains(city_ids, '["440100"]');
+```
+
+
+
+<img src="https://cdn.jsdelivr.net/gh/miiarms/typroa-image/moving/202302201603519.png" alt="image-20230220160342430" style="zoom:33%;" />
+
 ---
+
+### json_keys
+
+查询 json 字段有哪些key
+
+**案例演示：**
+
+```sql
+-- 查询snapshot_json 字段值包含的key
+select json_keys(snapshot_json) from config_snapshot;
+```
+
+<img src="https://cdn.jsdelivr.net/gh/miiarms/typroa-image/moving/202302201611493.png" alt="image-20230220161145399" style="zoom:33%;" />
+
+```sql
+-- 查看 snapshot_json 字段下的 snapshot_json数组第一个元素的所有json key
+select json_keys(snapshot_json, '$.snapshot_json[0]') from config_snapshot
+```
+
+<img src="https://cdn.jsdelivr.net/gh/miiarms/typroa-image/moving/202302201615004.png" alt="image-20230220161515928" style="zoom:33%;" />
+
+---
+
+### json_length
+
+返回 json 数组的长度
+
+**案例演示：**
+
+```sql
+select json_length(snapshot_json, '$.snapshot_json') from config_snapshot
+```
+
+![image-20230220162552792](https://cdn.jsdelivr.net/gh/miiarms/typroa-image/moving/202302201625922.png)
+
+```sql
+select json_length(city_ids) from config_snapshot
+```
+
+![image-20230220162646869](https://cdn.jsdelivr.net/gh/miiarms/typroa-image/moving/202302201626937.png)
+
+---
+
+### json_search
+
+查询某个值是否在给定的 JSON字符串里面
+
+![image-20230220170319647](https://cdn.jsdelivr.net/gh/miiarms/typroa-image/moving/202302201703738.png)
+
+---
+
+## json 复杂查询
+
+以下是一个比较复杂的查询案例
+
+```sql
+select
+       json_extract(snapshot_json, '$.snapshot_json') as before_update
+from config_snapshot
+where
+    -- 哪个品牌
+	json_contains(snapshot_json -> '$.snapshot_json[*].supplierList[*].supplierId', '[13]' , '$')
+    -- 哪个城市
+   and json_contains(snapshot_json -> '$.snapshot_json[*].cityCode', '"440100"' , '$')
+```
+
+---
+
+# 其它函数
+
+MySQL 还有很多其它的函数，可以自己去探索
 
 ### json_overlap（MySQL8.0+）
 
@@ -168,24 +259,4 @@ MySQL 提供了 `->` 和 `->>` 表达式，其中:
 ### member of（MySQL8.0+）
 
 匹配某个元素是否存在，返回1表示元素存在，返回0表示元素不存在
-
----
-
-## json 复杂查询
-
-
-
-```sql
-select 
-       json_extract(config_update_before, '$.urbanConfig') as before_update ,
-       json_extract(config_update_after, '$.urbanConfig') as after_update
-from open_config_snapshot 
-where 
-	json_contains(json_extract(config_update_before, '$.urbanConfig[*].supplierList[*].supplierId'), '[10]' , '$')
-   -- 哪个城市
-   and json_contains(json_extract(config_update_before, '$.urbanConfig[*].cityCode'), '"440600"' , '$')
- 
-```
-
-
 
