@@ -12,6 +12,9 @@
 * [elasticsearch](technology/elasticsearch/readme.md)
 * MySQL
   * [json查询](technology/mysql/mysql json 查询.md)
+* kafka
+  * [kafka相关面试题](technology/kafka/kafka相关面试题.md)
+
 
 
 - 开发工具
